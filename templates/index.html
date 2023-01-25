@@ -1,0 +1,62 @@
+{#FILTERS below is the name of the file#}
+
+{% load filters %}
+{% load tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav>
+    <a href="{% url 'index' %}">Go to index</a>
+    <a href="{% url 'redirect to home' %}">Redirect to home</a>
+</nav>
+<div>
+    Original: {{ values }}
+</div>
+<div>
+    Odd: {{ values|odd }}
+</div>
+<div>
+    Even: {{ values|even }}
+</div>
+{% student_info student %}
+{% sample_tag %}
+{% sample_tag 17 'Doncho' 28 'Bogomila' %}
+{% sample_tag department='Engineering' company='SoftUni' %}
+<h1>Original: {{ title }} : {{ value }}</h1>
+<h1>Upped: {{ title|upper }} : {{ value }} </h1>
+<h1>Lowered than capped first: {{ title|lower|capfirst }} : {{ value }} </h1>
+<h1>Truncated(WORKS EXCLUSIVE): {{ title|truncatechars:5 }} : {{ value }} </h1>
+<h2>{{ now }}</h2>
+<h2>{{ now|date:'y/m/d' }}</h2>
+<h2>{{ now|app_style }}</h2>
+
+
+{{ info.address }}
+Wrong: {{ student.get_info }}
+Correct: {{ student_info }}
+<h2>
+    {% if students %}
+    {{ students|join:', ' }}
+    {% else %}
+        No students
+    {% endif %}
+</h2>
+<h2>
+<ul>
+    {% for student in students %}
+        <li>{{ student }}</li>
+    {% empty %}
+        <li>No students</li>
+    {% endfor %}
+{#This is DTL comment#}
+</ul>
+{% csrf_token %}
+
+</h2>
+</body>
+</html>
