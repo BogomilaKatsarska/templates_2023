@@ -1,0 +1,39 @@
+{% load static %}
+{% load tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+{#Wrong way to load static files below:#}
+{#<link rel="stylesheet" href="/static/site.css">#}
+
+{#Correct way to load static files below#}
+<link rel="stylesheet" href="{% static "site.css" %}>
+
+{#Site css#}
+<style>
+    h1{
+        color: green;
+    }
+</style>
+{#Page specific css#}
+    {% block styles %} {% endblock %}
+</head>
+<body>
+HTML nav:
+<nav>
+    <a href="{% url 'index' %}">Go to index</a>
+    <a href="{% url 'redirect to home' %}">Redirect to home</a>
+</nav>
+Tag nav:
+{% app_nav 'index' 'redirect to home' 'about'%}
+
+{#Placeholder for child teplates to use#}
+{#page_content is custom name#}
+{% block page_content %}
+{% endblock %}
+{% include 'partials/footer.html' %}
+</body>
+</html>
